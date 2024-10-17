@@ -30,11 +30,6 @@ public class SecurityConfig {
 
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	
-	public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
-		this.jwtAuthenticationFilter=jwtAuthenticationFilter;
-		
-	}
-
 	@Bean
 	public AuthenticationProvider authenticationProvider (UserDetailsService userDetailsService,
 			PasswordEncoder passwordEncoder){

@@ -9,12 +9,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+
 
 public class Department {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@Setter private long id;
 	
 	@Column(nullable = false, unique = true)
 	private String name;
@@ -24,4 +27,5 @@ public class Department {
 	
 	@OneToMany(mappedBy ="department",cascade = CascadeType.ALL)
 	private List<Employee> employees=new ArrayList<>();
+
 }

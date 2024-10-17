@@ -18,10 +18,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-@lombok.extern.java.Log
 public class JwtTokenProvider {
 	
-	//private static final Logger log = LoggerFactory.getLogger(JwtTokenProvider.class);
 	@Value("${jwt.secret}")
 	private String JwtSecret;
 	

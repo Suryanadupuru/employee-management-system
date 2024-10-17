@@ -3,7 +3,9 @@ package com.example.ems.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 public class UserDto {
 	
@@ -34,6 +36,7 @@ public class UserDto {
 	}
 	
 	@Data
+	@AllArgsConstructor
 	public static class LoginResponse{
 		private String token;
 		private String type="Bearer";
