@@ -2,6 +2,7 @@ package com.example.ems.repository;
 
 import java.util.List;
 
+import org.hibernate.sql.Update;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,5 +14,6 @@ public interface DepartmentRepository extends JpaRepository<Department, Long>{
 	
 	@Query("SELECT d FROM Department d LEFT JOIN FETCH d.employees")
 	List<Department> findAllWithEmployees();
+	
 }
 

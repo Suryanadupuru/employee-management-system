@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import com.example.ems.dto.DepartmentDto;
 import com.example.ems.entity.Department;
+import com.example.ems.exception.DepartmentAlreadyExistsException;
 import com.example.ems.repository.DepartmentRepository;
 import com.example.ems.service.DepartmentService;
 
 import lombok.RequiredArgsConstructor;
 
+@Service
 @RequiredArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService{
 	
@@ -20,6 +23,9 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 	@Override
 	public DepartmentDto createDepartment(DepartmentDto departmentDto) {
+		if (departmentRepository.existsByName(departmentDto.getName())) {
+			throw new DepartmentAlreadyExistsException("Department with name"+departmentDto.getName()+" already exists");
+		}
 		Department department=modelMapper.map(departmentDto, Department.class);
 		Department savedDepartment=departmentRepository.save(department);
 		return modelMapper.map(savedDepartment, DepartmentDto.class);
@@ -57,6 +63,12 @@ public class DepartmentServiceImpl implements DepartmentService{
 			throw new RuntimeException("Department not found");
 		}
 		departmentRepository.deleteById(id);
+	}
+
+	@Override
+	public List<DepartmentDto> getAllDepartmentsWithEmployees() {
+		List<Department> departments=departmentRepository.findAllWithEmployees();
+		return departments.stream().map(dept ->modelMapper.map(dept, DepartmentDto.class)).collect(Collectors.toList());
 	}
 
 }

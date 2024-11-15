@@ -53,4 +53,10 @@ public class DepartmentController {
 		departmentService.deleteDepartment(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/with-employees")
+	public ResponseEntity<List<DepartmentDto>> getAllDepartmentsWithEmployees(){
+		List<DepartmentDto> departments=departmentService.getAllDepartmentsWithEmployees();
+		return ResponseEntity.ok(departments);
+	}
 }

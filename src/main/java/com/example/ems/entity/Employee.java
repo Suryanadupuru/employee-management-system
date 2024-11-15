@@ -13,6 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,22 +31,24 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(nullable = false)
+	@Column(name = "first_name", nullable = false)
 	private String firstName;
 	
-	@Column(nullable = false)
+	@Column(name ="last_name",nullable = false)
 	private String lastName;
 	
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@Column(nullable = false, unique = true)
-	private String phonenumber;
+	@Column(name = "phone_number",nullable = false, unique = true)
+	private String phoneNumber;
 	
-	@Column(nullable = false)
+	@Column(name="date_of_birth",nullable = false)
+	@Temporal(TemporalType.DATE)
 	private LocalDate dateOfBirth;
 	
-	@Column(nullable = false)
+	@Column(name="date_of_joining",nullable = false)
+	@Temporal(TemporalType.DATE)
 	private LocalDate dateOfJoining;
 	
 	private double salary;
@@ -53,8 +57,8 @@ public class Employee {
 	@JoinColumn(name="department_id")
 	private Department department;
 	
-	@Column(nullable = false)
-	private Boolean isActive;
+	@Column(name="is_active",nullable = false)
+	private boolean isActive;
 	
 
 }

@@ -1,7 +1,9 @@
 package com.example.ems.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.authentication.UserServiceBeanDefinitionParser;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ems.dto.UserDto.LoginRequest;
+import com.example.ems.dto.UserDto.LoginResponse;
 import com.example.ems.dto.UserDto.SignupRequest;
 import com.example.ems.service.UserService;
 
@@ -32,7 +35,7 @@ public class AuthController {
 	
 	@PostMapping("/login")
 	public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest loginRequest){
-		return ResponseEntity.ok(userService.authencateUser(loginRequest));
+		 return ResponseEntity.ok(userService.authenticateUser(loginRequest));
 	}
 	
 

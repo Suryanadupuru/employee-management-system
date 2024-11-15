@@ -7,7 +7,7 @@ import com.example.ems.entity.User;
 
 public interface UserService {
 	
-	LoginResponse authencateUser(LoginRequest loginRequest);
+	LoginResponse authenticateUser(LoginRequest loginRequest);
 	User registerUser(SignupRequest signupRequest);
 	User getCurrentUser();
 }

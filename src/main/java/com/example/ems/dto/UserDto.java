@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+
 public class UserDto {
 	
 	@Data
@@ -39,7 +40,7 @@ public class UserDto {
 	@AllArgsConstructor
 	public static class LoginResponse{
 		private String token;
-		private String type="Bearer";
+		private String type;
 		private String username;
 		private String role;
 	}

@@ -31,7 +31,7 @@ public class SecurityConfig {
 	private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	
 	@Bean
-	public AuthenticationProvider authenticationProvider (UserDetailsService userDetailsService,
+	public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService,
 			PasswordEncoder passwordEncoder){
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 		provider.setUserDetailsService(userDetailsService);
@@ -54,7 +54,8 @@ public class SecurityConfig {
 		http
 			.csrf(csrf -> csrf.disable())
 			.authorizeHttpRequests(auth ->
-					auth.requestMatchers("/api/auth/**").permitAll()
+					auth.requestMatchers("/auth/**").permitAll()
+						.requestMatchers("/api/employees/**","/api/departments/**").hasRole("USER")
 						.anyRequest().authenticated()
 			)
 			.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -64,10 +65,4 @@ public class SecurityConfig {
 		return http.build();
 	}
 }
-//@Bean
-//public JwtAuthenticationFilter jwtAuthenticationFilter(JwtTokenProvider tokenProvider,
-//		UserDetailsService userDetailsService) {
-//	JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(tokenProvider, userDetailsService);
-//	this.jwtAuthenticationFilter=jwtAuthenticationFilter;
-//	return jwtAuthenticationFilter;
-//}
+
