@@ -1,4 +1,4 @@
-package com.example.ems.repository;
+package com.example.ems.exception;
 
 public class EmployeeAlreadyExistsException extends RuntimeException {
 	

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.ems.dto.EmployeeDto;
 import com.example.ems.entity.Employee;
-import com.example.ems.repository.EmployeeAlreadyExistsException;
+import com.example.ems.exception.EmployeeAlreadyExistsException;
 import com.example.ems.repository.EmployeeRepository;
 import com.example.ems.service.EmployeeService;
 
